@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Instagram template</title>
+        <meta name="description" content="Instagram template by Filippos Zampounis.">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- styles -->
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="main.css">
+        <link rel="stylesheet" href="animate.css">
+        <!-- scripts -->
+        <script src="js/countUp.js"></script>
+        <script src="js/withinViewport.js"></script>
+        <script>
+            window.onload = function(){
+                window.addEventListener('scroll', updateRows);
+                
+                var rows = document.getElementsByClassName("row"),
+                    row;
+                
+                var options = {
+                  useEasing : true,
+                  useGrouping : true,
+                  separator : ',',
+                  decimal : '.',
+                  prefix : '',
+                  suffix : ''
+                };
+                
+                var followersAnim = new countUp(document.getElementById("followersNo"), 0, 2852, 0, 4.5, options);
+                followersAnim.start();
+                
+                var followingAnim = new countUp(document.getElementById("followingsNo"), 0, 1589, 0, 2.5, options);
+                followingAnim.start();
+                
+                function updateRows () {
+                    for(var i=0; i<rows.length; i++) {
+                        row = rows[i];
+                        if (withinViewport(row)) {
+                            row.classList.add('inView');
+                            row.classList.add('fadeIn');
+                            row.classList.remove('notInView');
+                            row.classList.remove('fadeOut');
+                        }
+                        else if(!row.classList.contains("alwaysShow")) {
+                            row.classList.add('notInView');
+                            row.classList.add('fadeOut');
+                            row.classList.remove('inView');
+                            row.classList.remove('fadeIn');
+                        }
+                    }
+                }
+                
+                var tableDiv = document.getElementById("tableView");
+                
+                var table = document.createElement('table');
+                for (var i=0; i < 8; i++){
+                    var tr = document.createElement('tr');   
+                    for(var j=1; j < 30; j++){
+                        if(i === 0) {
+                            //first row
+                            var td = document.createElement('td');
+                            var text1 = document.createTextNode(j);
+                            (j%2===0) && td.appendChild(text1);
+                            tr.appendChild(td);
+                        } else {
+                            if(j===1 ){
+                                var td = document.createElement('td');
+                                (i===2) && td.appendChild(document.createTextNode('M'));
+                                (i===4) && td.appendChild(document.createTextNode('W'));
+                                (i===6) && td.appendChild(document.createTextNode('F'));
+                                tr.appendChild(td);
+                            } else {
+                                var td = document.createElement('td');
+                                var randomNumber = Math.floor((Math.random() * 100) + 1);
+                                (randomNumber%2===0) && td.classList.add('pinkBackgroundColor');
+                                (randomNumber%3===0) && td.classList.add('lightGreyBackgroundColor');
+                                (randomNumber%7===0) && td.classList.add('brownBackgroundColor');
+                                (randomNumber%5===0) && td.classList.add('redBackgroundColor');
+                                tr.appendChild(td);
+                            }
+                        }
+                    }
+                    table.appendChild(tr);
+                }
+                tableDiv.appendChild(table);
+            }
+        </script>
+    </head>
+    <body>
+        <div class="container">
+            
+            <div id="blueLine" class="row alwaysShow">
+                <hr class="left" /><img class="" src="images/blueCircle.png"><hr class="right" />
+            </div>
+            
+            <div class="row jumbotron alwaysShow">
+                <img class="headerImages leftHeader" src="images/Instagram_02.png">
+                <img class="headerImages" src="images/Instagram_03.png">
+                <img class="headerImages rightHeader" src="images/Instagram_04.png">
+                <div id="profile">
+                    <img id="profileImg" src="images/profile.png">
+                </div>
+                
+                <div class="details row alwaysShow">
+                    <div class="username detailsItem"><b>SOHO</b></div>
+                    <div class="following detailsItem right"><strong><span id="followingsNo"></span></strong></br>FOLLOWING</div>
+                    <div class="followers detailsItem right"><strong><span id="followersNo"></span></strong></br>FOLLOWERS</div>
+                </div>
+            </div>
+            
+            <div class="row seperator alwaysShow">
+                <i class="fa fa-eye"> OVERVIEW <hr class="right" /></i> 
+            </div>
+
+            <div class="row animated" >
+                <div class="col-md-4">
+                    <div id="percentageTop"></div>
+                    <div class="wrapper">
+                        <div class="pie spinner grey"></div>
+                        <div class="pie fillerGrey grey"></div>
+                        <div class="mask"></div>
+                        <div class="explanation">
+                            <span class="blueColor"><strong>58</strong></br><span class="explanationDetail greyColor">NEW POSTS</span></span>
+                        </div>                      
+                    </div>
+                    <div id="iconStats"><i class="fa fa-picture-o blueColor"><span id="iconStatsDescription" class="lightGreyColor">TOTAL: 45K</span></i></div>
+                    <div id="percentageBottom" class="lightBlueColor"></div>
+                </div>
+                <div class="col-md-4">
+                    <div id="percentageTop" class="lightBlueColor">65%</div>
+                    <div class="wrapper">
+                        <div class="pie spinner lightBlue"></div>
+                        <div class="pie filler lightBlue"></div>
+                        <div class="mask"></div>
+                        <div class="explanation">
+                            <span class="redColor"><strong>1363</strong></br><span class="explanationDetail greyColor">LIKES RECEIVED</span></span>
+                        </div>                        
+                    </div>
+                    <div id="iconStats"><i class="fa fa-heart-o redColor"><span id="iconStatsDescription" class="lightGreyColor">TOTAL: 265K</span></i></div>
+                    <div id="percentageBottom" class="lightBlueColor">35%</div>
+                </div>
+                <div class="col-md-4">
+                    <div id="percentageTop" class="lightBlueColor">65%</div>
+                    <div class="wrapper">
+                        <div class="pie spinner lightBlue"></div>
+                        <div class="pie filler lightBlue"></div>
+                        <div class="mask"></div>
+                        <div class="explanation">
+                            <span class="greenColor"><strong>895</strong></br><span class="explanationDetail greyColor">COMMENTS RECEIVED</span></span>
+                        </div>   
+                    </div>
+                    <div id="iconStats"><i class="fa fa-whatsapp greenColor"><span id="iconStatsDescription" class="lightGreyColor">TOTAL: 9,9K</span></i></div>
+                    <div id="percentageBottom" class="lightBlueColor">35%</div>
+                </div>
+            </div>
+
+            <div class="row seperator index animated">
+                <span id="indexSpan">INDEX</span></br><hr class="indexHr" />
+                <i class="fa fa-square lightBlueColor explanation-details"> <span class="greyColor">PPL WHO FOLLOW ME</span></i> 
+                <i class="fa fa-square darkBlueColor explanation-details"> <span class="greyColor">PPL WHO DON'T FOLLOW ME</span></i>
+            </div>
+
+            <div class="row seperator animated">
+                <i class="fa fa-picture-o"> TOP POSTS by like <hr class="right" /></i> 
+            </div>
+            
+            <div class="row seperator animated">
+                <div class="col-md-4 noOverflow">
+                    <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+                        <div class="flipper">
+                            <div class="front">
+                                <div id="flipperHeader">
+                                    <img class="left" src="images/avatarCircle.png">
+                                    <div id="fliperDetails">
+                                        soho</br>4.JUN.2014
+                                    </div>
+                                    <img class="right" src="images/1st.png">
+                                </div>
+                                <img class="" src="images/Instagram_20.png">
+                                <div id="flipperCount">
+                                    <span class="greyColor">155.260</span><i class="fa fa-heart redColor flipperCountIcons"></i>
+                                </div>
+                            </div>
+                            <div class="back">
+                                Some more profile information or statistics can be added on the back
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 noOverflow">
+                    <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+                        <div class="flipper">
+                            <div class="front">
+                                <div id="flipperHeader">
+                                    <img class="left" src="images/avatarCircle.png">
+                                    <div id="fliperDetails">
+                                        soho</br>7.JUN.2014
+                                    </div>
+                                    <img class="right" src="images/2nd.png">
+                                </div>
+                                <img class="" src="images/Instagram_22.png">
+                                <div id="flipperCount">
+                                    <span class="greyColor">2.658</span><i class="fa fa-heart redColor flipperCountIcons"></i>
+                                </div>
+                            </div>
+                            <div class="back">
+                                Some more profile information or statistics can be added on the back
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 noOverflow">
+                    <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+                        <div class="flipper">
+                            <div class="front">
+                                <div id="flipperHeader">
+                                    <img class="left" src="images/avatarCircle.png">
+                                    <div id="fliperDetails">
+                                        soho</br>10.JUN.2014
+                                    </div>
+                                    <img class="right" src="images/3rd.png">
+                                </div>
+                                <img class="" src="images/Instagram_23.png">
+                                <div id="flipperCount">
+                                    <span class="greyColor">2.369</span><i class="fa fa-heart redColor flipperCountIcons"></i>
+                                </div>
+                            </div>
+                            <div class="back">
+                                Some more profile information or statistics can be added on the back
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row seperator animated">
+                <i class="fa fa-picture-o"> TOP POSTS by comments <hr class="right" /></i> 
+            </div>
+
+            <div class="row seperator animated">
+                <div class="col-md-4 noOverflow">
+                    <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+                        <div class="flipper">
+                            <div class="front">
+                                <div id="flipperHeader">
+                                    <img class="left" src="images/avatarCircle.png">
+                                    <div id="fliperDetails">
+                                        soho</br>20.JUN.2014
+                                    </div>
+                                    <img class="right" src="images/1st.png">
+                                </div>
+                                <img class="" src="images/comments_03.png">
+                                <div id="flipperCount">
+                                    <span class="greyColor">485</span><i class="fa fa-whatsapp greenColor flipperCountIcons"></i>
+                                </div>
+                            </div>
+                            <div class="back">
+                                Some more profile information or statistics can be added on the back
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 noOverflow">
+                    <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+                        <div class="flipper">
+                            <div class="front">
+                                <div id="flipperHeader">
+                                    <img class="left" src="images/avatarCircle.png">
+                                    <div id="fliperDetails">
+                                        soho</br>14.JUN.2014
+                                    </div>
+                                    <img class="right" src="images/2nd.png">
+                                </div>
+                                <img class="" src="images/comments_05.png">
+                                <div id="flipperCount">
+                                    <span class="greyColor">326</span><i class="fa fa-whatsapp greenColor flipperCountIcons"></i>
+                                </div>
+                            </div>
+                            <div class="back">
+                                Some more profile information or statistics can be added on the back
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 noOverflow">
+                    <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+                        <div class="flipper">
+                            <div class="front">
+                                <div id="flipperHeader">
+                                    <img class="left" src="images/avatarCircle.png">
+                                    <div id="fliperDetails">
+                                        soho</br>4.JUN.2014
+                                    </div>
+                                    <img class="right" src="images/3rd.png">
+                                </div>
+                                <img class="" src="images/comments_07.png">
+                                <div id="flipperCount">
+                                    <span class="greyColor">89</span><i class="fa fa-whatsapp greenColor flipperCountIcons"></i>
+                                </div>
+                            </div>
+                            <div class="back">
+                                Some more profile information or statistics can be added on the back
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row seperator animated">
+                <i class="fa fa-search"> TOP 3 Followers by number <hr class="right" /></i> 
+            </div>
+
+            <div class="row seperator animated">
+                <div class="col-md-4 noOverflow">
+                    <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+                        <div class="flipper">
+                            <div class="front">
+                                <div id="flipperHeader">
+                                    <div id="fliperDetails">
+                                        Natalie</br>NATALIE HOFMAN
+                                    </div>
+                                    <img class="right" src="images/1st.png">
+                                </div>
+                                <img class="" src="images/followers_12.png">
+                                <div id="flipperCount">
+                                    <span class="greyColor">25K</span><i class="fa fa-arrow-left darkBlueColor flipperCountIcons"></i>
+                                </div>
+                            </div>
+                            <div class="back">
+                                Some more profile information or statistics can be added on the back
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 noOverflow">
+                    <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+                        <div class="flipper">
+                            <div class="front">
+                                <div id="flipperHeader">
+                                    <div id="fliperDetails">
+                                        paul_1985</br>PAUL SMITH
+                                    </div>
+                                    <img class="right" src="images/2nd.png">
+                                </div>
+                                <img class="" src="images/followers_14.png">
+                                <div id="flipperCount">
+                                    <span class="greyColor">22.2K</span><i class="fa fa-arrow-left darkBlueColor flipperCountIcons"></i>
+                                </div>
+                            </div>
+                            <div class="back">
+                                Some more profile information or statistics can be added on the back
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 noOverflow">
+                    <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+                        <div class="flipper">
+                            <div class="front">
+                                <div id="flipperHeader">
+                                    <div id="fliperDetails">
+                                        kate_ximar</br>KATE XIMARSON
+                                    </div>
+                                    <img class="right" src="images/3rd.png">
+                                </div>
+                                <img class="" src="images/followers_16.png">
+                                <div id="flipperCount">
+                                    <span class="greyColor">19K</span><i class="fa fa-arrow-left darkBlueColor flipperCountIcons"></i>
+                                </div>
+                            </div>
+                            <div class="back">
+                                Some more profile information or statistics can be added on the back
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row seperator animated">
+                <i class="fa fa-square"> POST ACTIVITY <hr class="right" /></i> 
+            </div>
+
+            <div class="row seperator animated">
+                <div id="tableView"></div>
+            </div>
+
+            <div class="row seperator animated">
+                <i class="fa fa-map-marker"> TOP 3 POST LOCATIONS <hr class="right" /></i> 
+            </div>
+
+            <div class="row seperator animated">
+                <div class="col-md-4 noOverflow">
+                    <img class="" src="images/byLocation_21.png">
+                </div>
+                <div class="col-md-4 noOverflow">
+                    <img class="" src="images/byLocation_23.png">
+                </div>
+                <div class="col-md-4 noOverflow">
+                    <img class="" src="images/byLocation_25.png">
+                </div>
+            </div>
+
+            <div class="row seperator animated">
+                <i class="fa fa-filter"> TOP FILTERS BY LIKES <hr class="right" /></i> 
+            </div>
+
+            <div class="row seperator animated">
+                <div class="col-md-4 noOverflow">
+                    <img class="" src="images/filters_31.png">
+                </div>
+                <div class="col-md-4 noOverflow">
+                    <img class="" src="images/filters_33.png">
+                </div>
+                <div class="col-md-4 noOverflow">
+                    <img class="" src="images/filters_35.png">
+                </div>
+            </div>
+
+            <div class="row seperator animated">
+                <i class="fa fa-chevron-circle-right"> TOP 3 HASHTAGS <hr class="right" /></i> 
+            </div>
+
+        
+        </div>
+    </body>
+</html>

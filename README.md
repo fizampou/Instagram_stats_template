@@ -5,11 +5,11 @@ Using Bootstrap + font-awesome + animate.css + some more open source .js project
 
 ![instagram gif with demo](Instagram.gif)
 
-* known issues / bugs :
+** known issues / bugs :**
 
-- Bugs on mobiles (needs some vieport calculation fixes).
-- bugs on small screen sizes.
-- Animation issues.
+ Bugs on mobiles (needs some vieport calculation fixes).
+ bugs on small screen sizes.
+ Animation issues.
 
 Copyright (c) 2015 Filippos Zampounis
 
